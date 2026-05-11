@@ -187,7 +187,11 @@ fn copy_dylib_to_target_deps(lib_dir: &Path) {
     // OUT_DIR is typically target/<profile>/build/<pkg>-<hash>/out
     // We want target/<profile>/deps which is 3 levels up then into deps
     let out_dir = PathBuf::from(env::var("OUT_DIR").unwrap());
-    if let Some(build_dir) = out_dir.parent().and_then(|p| p.parent()).and_then(|p| p.parent()) {
+    if let Some(build_dir) = out_dir
+        .parent()
+        .and_then(|p| p.parent())
+        .and_then(|p| p.parent())
+    {
         let deps_dir = build_dir.join("deps");
         if deps_dir.is_dir() {
             let dst = deps_dir.join(dylib_name);
