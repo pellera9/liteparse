@@ -29,9 +29,6 @@ const result = await parser.parse(bytes);
 
 console.log(result.text);          // full document text
 console.log(result.pages[0]);      // per-page items with bboxes
-
-// Or format the structured result as a string:
-const out = parser.format(result);
 ```
 
 ## Config options
