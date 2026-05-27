@@ -85,31 +85,31 @@ flowchart LR
       PROJ --> JSON & TEXT & SCREEN
       JSON & TEXT & SCREEN --> Bindings
 
-      style Input fill:#0d0d0d,color:#F5F5F5,stroke:#37D7FA,stroke-width:2px
-      style Core fill:#1a0a4e,color:#F5F5F5,stroke:#3E18F9,stroke-width:2px
-      style Output fill:#1a0a4e,color:#F5F5F5,stroke:#4B72FE,stroke-width:2px
-      style Bindings fill:#0d0d0d,color:#F5F5F5,stroke:#FF8DF2,stroke-width:2px
+      style Input fill:#F5F5F5,color:#000000,stroke:#37D7FA,stroke-width:2px
+      style Core fill:#F5F5F5,color:#000000,stroke:#3E18F9,stroke-width:2px
+      style Output fill:#F5F5F5,color:#000000,stroke:#FF8705,stroke-width:2px
+      style Bindings fill:#F5F5F5,color:#000000,stroke:#FF8DF2,stroke-width:2px
 
-      style PDF fill:#37D7FA,color:#000000,stroke:#000000,stroke-width:1px
-      style DOCX fill:#37D7FA,color:#000000,stroke:#000000,stroke-width:1px
-      style XLSX fill:#37D7FA,color:#000000,stroke:#000000,stroke-width:1px
-      style PPTX fill:#37D7FA,color:#000000,stroke:#000000,stroke-width:1px
-      style IMG fill:#37D7FA,color:#000000,stroke:#000000,stroke-width:1px
+      style PDF fill:#96E7F9,color:#000000,stroke:#37D7FA,stroke-width:1px
+      style DOCX fill:#96E7F9,color:#000000,stroke:#37D7FA,stroke-width:1px
+      style XLSX fill:#96E7F9,color:#000000,stroke:#37D7FA,stroke-width:1px
+      style PPTX fill:#96E7F9,color:#000000,stroke:#37D7FA,stroke-width:1px
+      style IMG fill:#96E7F9,color:#000000,stroke:#37D7FA,stroke-width:1px
 
-      style CONV fill:#4B72FE,color:#FFFFFF,stroke:#3E18F9,stroke-width:1px
-      style EXTRACT fill:#4B72FE,color:#FFFFFF,stroke:#3E18F9,stroke-width:1px
-      style OCR fill:#4B72FE,color:#FFFFFF,stroke:#3E18F9,stroke-width:1px
-      style MERGE fill:#4B72FE,color:#FFFFFF,stroke:#3E18F9,stroke-width:1px
-      style PROJ fill:#3E18F9,color:#FFFFFF,stroke:#37D7FA,stroke-width:2px
+      style CONV fill:#92AEFF,color:#000000,stroke:#4B72FE,stroke-width:1px
+      style EXTRACT fill:#92AEFF,color:#000000,stroke:#4B72FE,stroke-width:1px
+      style OCR fill:#92AEFF,color:#000000,stroke:#4B72FE,stroke-width:1px
+      style MERGE fill:#92AEFF,color:#000000,stroke:#4B72FE,stroke-width:1px
+      style PROJ fill:#4B72FE,color:#FFFFFF,stroke:#3E18F9,stroke-width:2px
 
-      style JSON fill:#FF8705,color:#000000,stroke:#000000,stroke-width:1px
-      style TEXT fill:#FF8705,color:#000000,stroke:#000000,stroke-width:1px
-      style SCREEN fill:#FF8705,color:#000000,stroke:#000000,stroke-width:1px
+      style JSON fill:#FFBD74,color:#000000,stroke:#FF8705,stroke-width:1px
+      style TEXT fill:#FFBD74,color:#000000,stroke:#FF8705,stroke-width:1px
+      style SCREEN fill:#FFBD74,color:#000000,stroke:#FF8705,stroke-width:1px
 
-      style NAPI fill:#FF8DF2,color:#000000,stroke:#000000,stroke-width:1px
-      style PYO3 fill:#FF8DF2,color:#000000,stroke:#000000,stroke-width:1px
-      style WASM fill:#FF8DF2,color:#000000,stroke:#000000,stroke-width:1px
-      style CLI fill:#FF8DF2,color:#000000,stroke:#000000,stroke-width:1px
+      style NAPI fill:#FFBFF8,color:#000000,stroke:#FF8DF2,stroke-width:1px
+      style PYO3 fill:#FFBFF8,color:#000000,stroke:#FF8DF2,stroke-width:1px
+      style WASM fill:#FFBFF8,color:#000000,stroke:#FF8DF2,stroke-width:1px
+      style CLI fill:#FFBFF8,color:#000000,stroke:#FF8DF2,stroke-width:1px
 ```
 
 ## Installation
