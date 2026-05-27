@@ -14,8 +14,7 @@ pub struct Library {
 impl Library {
     pub fn init() -> Library {
         #[cfg(not(target_arch = "wasm32"))]
-        pdfium_sys::dynamic::load_default()
-            .expect("failed to load pdfium shared library");
+        pdfium_sys::dynamic::load_default().expect("failed to load pdfium shared library");
 
         INIT.call_once(|| {
             unsafe { ffi!(FPDF_InitLibrary()) };

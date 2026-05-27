@@ -130,8 +130,14 @@ impl TextPage<'_> {
         }
         let buf_len = count + 1; // +1 for terminator
         let mut buf: Vec<u16> = vec![0; buf_len as usize];
-        let written =
-            unsafe { ffi!(FPDFText_GetText(self.handle, start, count, buf.as_mut_ptr())) };
+        let written = unsafe {
+            ffi!(FPDFText_GetText(
+                self.handle,
+                start,
+                count,
+                buf.as_mut_ptr()
+            ))
+        };
         if written <= 0 {
             return String::new();
         }
@@ -333,7 +339,11 @@ impl TextChar<'_> {
             bottom: 0.0,
         };
         let ok = unsafe {
-            ffi!(FPDFText_GetLooseCharBox(self.text_page.handle, self.index, &mut rect))
+            ffi!(FPDFText_GetLooseCharBox(
+                self.text_page.handle,
+                self.index,
+                &mut rect
+            ))
         };
         if ok != 0 {
             Some(RectF {
@@ -356,8 +366,13 @@ impl TextChar<'_> {
             e: 0.0,
             f: 0.0,
         };
-        let ok =
-            unsafe { ffi!(FPDFText_GetMatrix(self.text_page.handle, self.index, &mut m)) };
+        let ok = unsafe {
+            ffi!(FPDFText_GetMatrix(
+                self.text_page.handle,
+                self.index,
+                &mut m
+            ))
+        };
         if ok != 0 {
             Some(Matrix {
                 a: m.a,
@@ -377,7 +392,12 @@ impl TextChar<'_> {
     }
 
     pub fn has_unicode_map_error(&self) -> bool {
-        unsafe { ffi!(FPDFText_HasUnicodeMapError(self.text_page.handle, self.index)) == 1 }
+        unsafe {
+            ffi!(FPDFText_HasUnicodeMapError(
+                self.text_page.handle,
+                self.index
+            )) == 1
+        }
     }
 }
 

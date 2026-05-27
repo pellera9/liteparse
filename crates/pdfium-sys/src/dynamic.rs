@@ -33,29 +33,22 @@ pub struct PdfiumBindings {
     pub FPDF_GetLastError: unsafe extern "C" fn() -> std::os::raw::c_ulong,
 
     // -- Document --
-    pub FPDF_LoadDocument:
-        unsafe extern "C" fn(FPDF_STRING, FPDF_BYTESTRING) -> FPDF_DOCUMENT,
+    pub FPDF_LoadDocument: unsafe extern "C" fn(FPDF_STRING, FPDF_BYTESTRING) -> FPDF_DOCUMENT,
     pub FPDF_LoadMemDocument: unsafe extern "C" fn(
         *const std::os::raw::c_void,
         std::os::raw::c_int,
         FPDF_BYTESTRING,
     ) -> FPDF_DOCUMENT,
     pub FPDF_CloseDocument: unsafe extern "C" fn(FPDF_DOCUMENT),
-    pub FPDF_GetPageCount:
-        unsafe extern "C" fn(FPDF_DOCUMENT) -> std::os::raw::c_int,
+    pub FPDF_GetPageCount: unsafe extern "C" fn(FPDF_DOCUMENT) -> std::os::raw::c_int,
 
     // -- Page --
-    pub FPDF_LoadPage: unsafe extern "C" fn(
-        FPDF_DOCUMENT,
-        std::os::raw::c_int,
-    ) -> FPDF_PAGE,
+    pub FPDF_LoadPage: unsafe extern "C" fn(FPDF_DOCUMENT, std::os::raw::c_int) -> FPDF_PAGE,
     pub FPDF_ClosePage: unsafe extern "C" fn(FPDF_PAGE),
     pub FPDF_GetPageWidthF: unsafe extern "C" fn(FPDF_PAGE) -> f32,
     pub FPDF_GetPageHeightF: unsafe extern "C" fn(FPDF_PAGE) -> f32,
-    pub FPDF_GetPageBoundingBox:
-        unsafe extern "C" fn(FPDF_PAGE, *mut FS_RECTF) -> FPDF_BOOL,
-    pub FPDFPage_GetRotation:
-        unsafe extern "C" fn(FPDF_PAGE) -> std::os::raw::c_int,
+    pub FPDF_GetPageBoundingBox: unsafe extern "C" fn(FPDF_PAGE, *mut FS_RECTF) -> FPDF_BOOL,
+    pub FPDFPage_GetRotation: unsafe extern "C" fn(FPDF_PAGE) -> std::os::raw::c_int,
     pub FPDF_PageToDevice: unsafe extern "C" fn(
         FPDF_PAGE,
         std::os::raw::c_int,
@@ -70,48 +63,27 @@ pub struct PdfiumBindings {
     ) -> FPDF_BOOL,
 
     // -- Page objects --
-    pub FPDFPage_CountObjects:
-        unsafe extern "C" fn(FPDF_PAGE) -> std::os::raw::c_int,
-    pub FPDFPage_GetObject: unsafe extern "C" fn(
-        FPDF_PAGE,
-        std::os::raw::c_int,
-    ) -> FPDF_PAGEOBJECT,
-    pub FPDFPageObj_GetType:
-        unsafe extern "C" fn(FPDF_PAGEOBJECT) -> std::os::raw::c_int,
-    pub FPDFPageObj_GetBounds: unsafe extern "C" fn(
-        FPDF_PAGEOBJECT,
-        *mut f32,
-        *mut f32,
-        *mut f32,
-        *mut f32,
-    ) -> FPDF_BOOL,
+    pub FPDFPage_CountObjects: unsafe extern "C" fn(FPDF_PAGE) -> std::os::raw::c_int,
+    pub FPDFPage_GetObject: unsafe extern "C" fn(FPDF_PAGE, std::os::raw::c_int) -> FPDF_PAGEOBJECT,
+    pub FPDFPageObj_GetType: unsafe extern "C" fn(FPDF_PAGEOBJECT) -> std::os::raw::c_int,
+    pub FPDFPageObj_GetBounds:
+        unsafe extern "C" fn(FPDF_PAGEOBJECT, *mut f32, *mut f32, *mut f32, *mut f32) -> FPDF_BOOL,
     pub FPDFPageObj_GetMarkedContentID:
         unsafe extern "C" fn(FPDF_PAGEOBJECT) -> std::os::raw::c_int,
-    pub FPDFImageObj_GetRenderedBitmap: unsafe extern "C" fn(
-        FPDF_DOCUMENT,
-        FPDF_PAGE,
-        FPDF_PAGEOBJECT,
-    ) -> FPDF_BITMAP,
+    pub FPDFImageObj_GetRenderedBitmap:
+        unsafe extern "C" fn(FPDF_DOCUMENT, FPDF_PAGE, FPDF_PAGEOBJECT) -> FPDF_BITMAP,
 
     // -- TextPage --
     pub FPDFText_LoadPage: unsafe extern "C" fn(FPDF_PAGE) -> FPDF_TEXTPAGE,
     pub FPDFText_ClosePage: unsafe extern "C" fn(FPDF_TEXTPAGE),
-    pub FPDFText_CountChars:
-        unsafe extern "C" fn(FPDF_TEXTPAGE) -> std::os::raw::c_int,
-    pub FPDFText_GetUnicode: unsafe extern "C" fn(
-        FPDF_TEXTPAGE,
-        std::os::raw::c_int,
-    ) -> std::os::raw::c_uint,
-    pub FPDFText_GetCharCode: unsafe extern "C" fn(
-        FPDF_TEXTPAGE,
-        std::os::raw::c_int,
-    ) -> std::os::raw::c_uint,
-    pub FPDFText_GetFontSize:
-        unsafe extern "C" fn(FPDF_TEXTPAGE, std::os::raw::c_int) -> f64,
-    pub FPDFText_GetFontWeight: unsafe extern "C" fn(
-        FPDF_TEXTPAGE,
-        std::os::raw::c_int,
-    ) -> std::os::raw::c_int,
+    pub FPDFText_CountChars: unsafe extern "C" fn(FPDF_TEXTPAGE) -> std::os::raw::c_int,
+    pub FPDFText_GetUnicode:
+        unsafe extern "C" fn(FPDF_TEXTPAGE, std::os::raw::c_int) -> std::os::raw::c_uint,
+    pub FPDFText_GetCharCode:
+        unsafe extern "C" fn(FPDF_TEXTPAGE, std::os::raw::c_int) -> std::os::raw::c_uint,
+    pub FPDFText_GetFontSize: unsafe extern "C" fn(FPDF_TEXTPAGE, std::os::raw::c_int) -> f64,
+    pub FPDFText_GetFontWeight:
+        unsafe extern "C" fn(FPDF_TEXTPAGE, std::os::raw::c_int) -> std::os::raw::c_int,
     pub FPDFText_GetFontInfo: unsafe extern "C" fn(
         FPDF_TEXTPAGE,
         std::os::raw::c_int,
@@ -119,8 +91,7 @@ pub struct PdfiumBindings {
         std::os::raw::c_ulong,
         *mut std::os::raw::c_int,
     ) -> std::os::raw::c_ulong,
-    pub FPDFText_GetCharAngle:
-        unsafe extern "C" fn(FPDF_TEXTPAGE, std::os::raw::c_int) -> f32,
+    pub FPDFText_GetCharAngle: unsafe extern "C" fn(FPDF_TEXTPAGE, std::os::raw::c_int) -> f32,
     pub FPDFText_GetCharBox: unsafe extern "C" fn(
         FPDF_TEXTPAGE,
         std::os::raw::c_int,
@@ -129,28 +100,16 @@ pub struct PdfiumBindings {
         *mut f64,
         *mut f64,
     ) -> FPDF_BOOL,
-    pub FPDFText_GetLooseCharBox: unsafe extern "C" fn(
-        FPDF_TEXTPAGE,
-        std::os::raw::c_int,
-        *mut FS_RECTF,
-    ) -> FPDF_BOOL,
-    pub FPDFText_GetMatrix: unsafe extern "C" fn(
-        FPDF_TEXTPAGE,
-        std::os::raw::c_int,
-        *mut FS_MATRIX,
-    ) -> FPDF_BOOL,
-    pub FPDFText_IsGenerated: unsafe extern "C" fn(
-        FPDF_TEXTPAGE,
-        std::os::raw::c_int,
-    ) -> std::os::raw::c_int,
-    pub FPDFText_HasUnicodeMapError: unsafe extern "C" fn(
-        FPDF_TEXTPAGE,
-        std::os::raw::c_int,
-    ) -> std::os::raw::c_int,
-    pub FPDFText_GetTextObject: unsafe extern "C" fn(
-        FPDF_TEXTPAGE,
-        std::os::raw::c_int,
-    ) -> FPDF_PAGEOBJECT,
+    pub FPDFText_GetLooseCharBox:
+        unsafe extern "C" fn(FPDF_TEXTPAGE, std::os::raw::c_int, *mut FS_RECTF) -> FPDF_BOOL,
+    pub FPDFText_GetMatrix:
+        unsafe extern "C" fn(FPDF_TEXTPAGE, std::os::raw::c_int, *mut FS_MATRIX) -> FPDF_BOOL,
+    pub FPDFText_IsGenerated:
+        unsafe extern "C" fn(FPDF_TEXTPAGE, std::os::raw::c_int) -> std::os::raw::c_int,
+    pub FPDFText_HasUnicodeMapError:
+        unsafe extern "C" fn(FPDF_TEXTPAGE, std::os::raw::c_int) -> std::os::raw::c_int,
+    pub FPDFText_GetTextObject:
+        unsafe extern "C" fn(FPDF_TEXTPAGE, std::os::raw::c_int) -> FPDF_PAGEOBJECT,
     pub FPDFText_GetStrokeColor: unsafe extern "C" fn(
         FPDF_TEXTPAGE,
         std::os::raw::c_int,
@@ -207,14 +166,10 @@ pub struct PdfiumBindings {
         std::os::raw::c_int,
     ) -> FPDF_BITMAP,
     pub FPDFBitmap_Destroy: unsafe extern "C" fn(FPDF_BITMAP),
-    pub FPDFBitmap_GetWidth:
-        unsafe extern "C" fn(FPDF_BITMAP) -> std::os::raw::c_int,
-    pub FPDFBitmap_GetHeight:
-        unsafe extern "C" fn(FPDF_BITMAP) -> std::os::raw::c_int,
-    pub FPDFBitmap_GetStride:
-        unsafe extern "C" fn(FPDF_BITMAP) -> std::os::raw::c_int,
-    pub FPDFBitmap_GetBuffer:
-        unsafe extern "C" fn(FPDF_BITMAP) -> *mut std::os::raw::c_void,
+    pub FPDFBitmap_GetWidth: unsafe extern "C" fn(FPDF_BITMAP) -> std::os::raw::c_int,
+    pub FPDFBitmap_GetHeight: unsafe extern "C" fn(FPDF_BITMAP) -> std::os::raw::c_int,
+    pub FPDFBitmap_GetStride: unsafe extern "C" fn(FPDF_BITMAP) -> std::os::raw::c_int,
+    pub FPDFBitmap_GetBuffer: unsafe extern "C" fn(FPDF_BITMAP) -> *mut std::os::raw::c_void,
     pub FPDFBitmap_FillRect: unsafe extern "C" fn(
         FPDF_BITMAP,
         std::os::raw::c_int,
@@ -237,22 +192,14 @@ pub struct PdfiumBindings {
     ),
 
     // -- Font --
-    pub FPDFTextObj_GetFont:
-        unsafe extern "C" fn(FPDF_PAGEOBJECT) -> FPDF_FONT,
-    pub FPDFFont_GetBaseFontName: unsafe extern "C" fn(
-        FPDF_FONT,
-        *mut std::os::raw::c_char,
-        usize,
-    ) -> usize,
+    pub FPDFTextObj_GetFont: unsafe extern "C" fn(FPDF_PAGEOBJECT) -> FPDF_FONT,
+    pub FPDFFont_GetBaseFontName:
+        unsafe extern "C" fn(FPDF_FONT, *mut std::os::raw::c_char, usize) -> usize,
     pub FPDFFont_GetType: unsafe extern "C" fn(FPDF_FONT) -> FPDF_FONT_TYPE,
-    pub FPDFFont_GetIsEmbedded:
-        unsafe extern "C" fn(FPDF_FONT) -> std::os::raw::c_int,
-    pub FPDFFont_GetAscent:
-        unsafe extern "C" fn(FPDF_FONT, f32, *mut f32) -> FPDF_BOOL,
-    pub FPDFFont_GetDescent:
-        unsafe extern "C" fn(FPDF_FONT, f32, *mut f32) -> FPDF_BOOL,
-    pub FPDFFont_GetGlyphWidth:
-        unsafe extern "C" fn(FPDF_FONT, u32, f32, *mut f32) -> FPDF_BOOL,
+    pub FPDFFont_GetIsEmbedded: unsafe extern "C" fn(FPDF_FONT) -> std::os::raw::c_int,
+    pub FPDFFont_GetAscent: unsafe extern "C" fn(FPDF_FONT, f32, *mut f32) -> FPDF_BOOL,
+    pub FPDFFont_GetDescent: unsafe extern "C" fn(FPDF_FONT, f32, *mut f32) -> FPDF_BOOL,
+    pub FPDFFont_GetGlyphWidth: unsafe extern "C" fn(FPDF_FONT, u32, f32, *mut f32) -> FPDF_BOOL,
     pub FPDFFont_GetGlyphWidthFromCharCode:
         unsafe extern "C" fn(FPDF_FONT, u32, f32, *mut f32) -> FPDF_BOOL,
 }
@@ -331,11 +278,17 @@ impl PdfiumBindings {
 /// Shared library file name for the current platform.
 fn dylib_name() -> &'static str {
     #[cfg(target_os = "macos")]
-    { "libpdfium.dylib" }
+    {
+        "libpdfium.dylib"
+    }
     #[cfg(target_os = "windows")]
-    { "pdfium.dll" }
+    {
+        "pdfium.dll"
+    }
     #[cfg(not(any(target_os = "macos", target_os = "windows")))]
-    { "libpdfium.so" }
+    {
+        "libpdfium.so"
+    }
 }
 
 /// Search paths for the pdfium shared library, in priority order.
@@ -366,8 +319,8 @@ pub fn load(lib_path: &Path) -> Result<(), String> {
     }
     let lib = unsafe { Library::new(lib_path) }
         .map_err(|e| format!("failed to load pdfium from {}: {e}", lib_path.display()))?;
-    let bindings = PdfiumBindings::load(lib)
-        .map_err(|e| format!("failed to resolve pdfium symbols: {e}"))?;
+    let bindings =
+        PdfiumBindings::load(lib).map_err(|e| format!("failed to resolve pdfium symbols: {e}"))?;
     let _ = BINDINGS.set(bindings);
     Ok(())
 }
@@ -388,17 +341,18 @@ pub fn load_default() -> Result<(), String> {
 
     for path in &paths {
         match unsafe { Library::new(path) } {
-            Ok(lib) => {
-                match PdfiumBindings::load(lib) {
-                    Ok(bindings) => {
-                        let _ = BINDINGS.set(bindings);
-                        return Ok(());
-                    }
-                    Err(e) => {
-                        last_err = format!("failed to resolve pdfium symbols from {}: {e}", path.display());
-                    }
+            Ok(lib) => match PdfiumBindings::load(lib) {
+                Ok(bindings) => {
+                    let _ = BINDINGS.set(bindings);
+                    return Ok(());
                 }
-            }
+                Err(e) => {
+                    last_err = format!(
+                        "failed to resolve pdfium symbols from {}: {e}",
+                        path.display()
+                    );
+                }
+            },
             Err(e) => {
                 last_err = format!("{}: {e}", path.display());
             }
@@ -407,7 +361,8 @@ pub fn load_default() -> Result<(), String> {
 
     Err(format!(
         "could not find pdfium shared library. Last error: {last_err}. \
-         Set PDFIUM_LIB_PATH to the directory containing {}", dylib_name()
+         Set PDFIUM_LIB_PATH to the directory containing {}",
+        dylib_name()
     ))
 }
 

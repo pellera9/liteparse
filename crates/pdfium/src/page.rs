@@ -173,7 +173,13 @@ impl Page<'_> {
             let mut right: f32 = 0.0;
             let mut top: f32 = 0.0;
             let ok = unsafe {
-                ffi!(FPDFPageObj_GetBounds(obj, &mut left, &mut bottom, &mut right, &mut top))
+                ffi!(FPDFPageObj_GetBounds(
+                    obj,
+                    &mut left,
+                    &mut bottom,
+                    &mut right,
+                    &mut top
+                ))
             };
             if ok == 0 {
                 continue;
@@ -219,7 +225,11 @@ impl Page<'_> {
 
             if image_idx == image_obj_index {
                 let bmp_handle = unsafe {
-                    ffi!(FPDFImageObj_GetRenderedBitmap(self.doc_handle, self.handle, obj))
+                    ffi!(FPDFImageObj_GetRenderedBitmap(
+                        self.doc_handle,
+                        self.handle,
+                        obj
+                    ))
                 };
                 if bmp_handle.is_null() {
                     return Err(PdfiumError::OperationFailed);

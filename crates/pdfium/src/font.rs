@@ -40,8 +40,13 @@ impl Font {
 
     /// Get the base font name (PostScript name, subset prefix stripped by PDFium).
     pub fn base_name(&self) -> Option<String> {
-        let len =
-            unsafe { ffi!(FPDFFont_GetBaseFontName(self.handle, std::ptr::null_mut(), 0)) };
+        let len = unsafe {
+            ffi!(FPDFFont_GetBaseFontName(
+                self.handle,
+                std::ptr::null_mut(),
+                0
+            ))
+        };
         if len == 0 {
             return None;
         }
@@ -116,7 +121,12 @@ impl Font {
     pub fn glyph_width(&self, unicode: u32, font_size: f32) -> Option<f32> {
         let mut width: f32 = 0.0;
         let ok = unsafe {
-            ffi!(FPDFFont_GetGlyphWidth(self.handle, unicode, font_size, &mut width))
+            ffi!(FPDFFont_GetGlyphWidth(
+                self.handle,
+                unicode,
+                font_size,
+                &mut width
+            ))
         };
         if ok != 0 { Some(width) } else { None }
     }

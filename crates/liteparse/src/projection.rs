@@ -1573,7 +1573,7 @@ fn project_to_grid(
         .collect();
 
     let mut raw_lines = vec![String::new(); lines.len()];
-    
+
     // Page-scoped forward anchors (carry alignment across blocks)
     let mut forward_left: BTreeMap<i32, usize> = BTreeMap::new();
     let mut forward_right: BTreeMap<i32, usize> = BTreeMap::new();
